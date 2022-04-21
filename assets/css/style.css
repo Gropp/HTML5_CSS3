@@ -1,0 +1,227 @@
+/* arquivo de estilos do HTML5 */
+/* importar a fonte do google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    /* a medida das bordas cola no frame pai */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* div principal - container */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ecf0f1;
+}
+
+/* propriedades em comum das duas divs de conteudo - os dois menus */
+.content {
+    width: 960px;
+    height: 60%;   
+    background-color: white;
+    border-radius: 15px;
+    /* eixo x */
+    justify-content: space-between;
+    /* eixo y */
+    align-items: center;
+    /* para conter o position absolute do pseudo elemento, precisamos dar uma referencia com o position relative no elemento pai */
+    position: relative;
+}
+
+/* definicao de um pseudo elemento para contente anterior */
+.content::before {
+    content: "";
+    position: absolute;
+    background-color: #58af9b;
+    /* posicao para o conteudo 100% altura e 40% da largura em relacao ao .content */
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    left: 60%;
+}
+
+
+/* div do primeiro menu */
+.first-content {
+    display: flex;
+    display: none;
+}
+
+/* primeira coluna do primeiro conteudo */
+.first-column {
+    flex: 1 0 auto;
+    text-align: center;
+    /* precisamos trazer essa div para frente do pseudo elemento, para isso usamos o z-index, que numera a posicao dos layers quando as divs se sobropoem */
+    z-index: 1;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.title-primary {
+    color: white;
+}
+
+.description {
+    font-size: 14px;
+    font-weight: 300;
+    /* espaço entre linhas */
+    line-height: 30px;
+}
+
+.description-primary {
+    color: #fff;
+}
+
+.description-second {
+    color: #7f8c8d;
+}
+
+/* botoes */
+.btn {
+    width: 150px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 10px;
+    margin-top: 1rem;
+    padding: 10px 50px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: #58af9b;
+}
+
+.btn-second {
+    background-color: #58af9b;
+    border: 1px solid #58af9b;
+}
+
+.btn-second:hover {
+    color: #58af9b;
+    background-color: #fff;
+    border: 1px solid #58af9b;
+}
+
+/* lista nao numerada dos icones das midias sociais */
+.list-social-media {
+    display: flex;
+    list-style-type: none;
+}
+
+.social-media {
+    margin: 1rem 0;
+}
+
+.item-social-media{
+    color: #95a5a6;
+    border: 1px solid #bdc3c7;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    /* centraliza no x */
+    text-align: center;
+    /* centraliza no y */
+    line-height: 35px;
+}
+
+/* pseudo classe que nega a propriedade para o primeiro filho da classe item-social-media */
+/* nos outros elementos ela aplica essa propriedade */
+.link-social-media:not(:first-child){
+    margin-left: 10px;
+}
+
+.link-social-media:hover .item-social-media {
+    background-color: #58af9b;
+    color: #fff;
+    border-color: #58af9b;
+}
+
+/* campos de formularios */
+.form {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    height: 45px;
+    width: 100%;
+    border: none;
+    background-color: #ecf0f1;
+}
+
+.label-input {
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin: 8px;
+}
+
+.icon-modify{
+    color: #7f8c8d;
+    padding: 0 5px;
+}
+
+/* segunda coluna do primeiro conteudo */
+.second-column {
+    flex: 2 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* alinhamento no eixo y */
+    align-items: center;
+}
+
+.title-second {
+    color: #58af9b;
+}
+
+/* div do segundo menu */
+.second-content {
+    /* a posicao absoluta usa o conteiner como referencia e sobrepoe as divs filhas */
+    position: absolute;
+    display: flex;
+}
+
+/* alterando as ordens da div na coluna */
+.second-content .first-column{
+    order: 2;
+}
+
+.second-content .second-column{
+    order: 1;
+}
+
+.password {
+    color: #34495e;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+}
+/* pseudo classe para password */
+.password::first-letter {
+    text-transform: capitalize;
+}

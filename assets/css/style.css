@@ -24,6 +24,7 @@ body {
 
 /* propriedades em comum das duas divs de conteudo - os dois menus */
 .content {
+    /* pai dos contents */
     width: 960px;
     height: 60%;   
     background-color: white;
@@ -46,23 +47,27 @@ body {
     height: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-
-    left: 60%;
+    /* left: 0%; */
 }
 
 
 /* div do primeiro menu */
 .first-content {
     display: flex;
-    display: none;
+    /* display: none; */
+}
+
+.first-content .second-column{
+    z-index: 11;
 }
 
 /* primeira coluna do primeiro conteudo */
 .first-column {
-    flex: 1 0 auto;
+    /* flex: 1 0 auto; */
+    width: 40%;
     text-align: center;
     /* precisamos trazer essa div para frente do pseudo elemento, para isso usamos o z-index, que numera a posicao dos layers quando as divs se sobropoem */
-    z-index: 1;
+    z-index: 10;
 }
 
 .title {
@@ -108,6 +113,7 @@ body {
 .btn-primary {
     background-color: transparent;
     border: 1px solid #fff;
+    transition: background-color .5s;
 }
 
 .btn-primary:hover {
@@ -118,6 +124,8 @@ body {
 .btn-second {
     background-color: #58af9b;
     border: 1px solid #58af9b;
+    /* tempo para mudar a cor de fundo para o hover do botao */
+    transition: background-color .5s;
 }
 
 .btn-second:hover {
@@ -148,6 +156,10 @@ body {
     line-height: 35px;
 }
 
+.link-social-media .item-social-media {
+    transition: background-color 3s;
+}
+
 /* pseudo classe que nega a propriedade para o primeiro filho da classe item-social-media */
 /* nos outros elementos ela aplica essa propriedade */
 .link-social-media:not(:first-child){
@@ -174,6 +186,12 @@ body {
     background-color: #ecf0f1;
 }
 
+/* ajuste para as cores do form no google chrome*/
+input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px #ecf0f1 inset !important;
+    -webkit-text-fill-color: #000 !important;
+}
+
 .label-input {
     background-color: #ecf0f1;
     display: flex;
@@ -188,7 +206,8 @@ body {
 
 /* segunda coluna do primeiro conteudo */
 .second-column {
-    flex: 2 0 auto;
+    /* flex: 2 0 auto; */
+    width: 60%;
     display: flex;
     flex-direction: column;
     /* alinhamento no eixo y */
@@ -209,10 +228,15 @@ body {
 /* alterando as ordens da div na coluna */
 .second-content .first-column{
     order: 2;
+    /* escondendo o layer inferior */
+    z-index: -1;;
 }
 
 .second-content .second-column{
     order: 1;
+    /* escondendo o layer inferior */
+    /* sem que haja a possibilidade de se selecionar algum item escondido */
+    z-index: -1;
 }
 
 .password {
@@ -224,4 +248,163 @@ body {
 /* pseudo classe para password */
 .password::first-letter {
     text-transform: capitalize;
+}
+
+/* transicao  entre os menus e os content::before*/
+/* com a class signin ativada pelo js, o primeiro content vai para traz dos layers */
+.sign-in-js .first-content .first-column {
+    z-index: -1;
+}
+
+.sign-in-js .first-content .second-column {
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 3s;
+}
+
+/* animacao conteudo atras do before */
+@keyframes deslocamentoEsq {
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+    25%{
+        left: -80px;
+        opacity: .66;
+        z-index: 12;
+    }
+    50%{
+        left: -100px;
+        opacity: .33;
+        z-index: 12;
+    }
+    to {
+        left: -110;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+@keyframes deslocamentoDir {
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+    25%{
+        left: 80px;
+        opacity: .33;
+        /* z-index: 12; */
+    }
+    50%{
+        left: 100px;
+        opacity: .66;
+        /* z-index: 12;
+        background-color: yellow; */
+    }
+    to {
+        left: 110;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+
+/* mostra o segundo conteudo */
+.sign-in-js .second-content .second-column {
+    z-index: 11;
+}
+
+.sign-in-js .second-content .first-column {
+    z-index: 13;
+}
+/* joga a faixa verde para a esquerda */
+/* quero animar a transicao do before */
+.sign-in-js .content::before {
+    left: 60%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    /* nome da animacao e o tempo de execucao */
+    animation: slidein 3s;
+    z-index: 12;
+}
+
+
+.sign-up-js .second-content .first-column {
+    z-index: -1;
+}
+
+.sign-up-js .second-content .second-column {
+    position: relative;
+    z-index: -1;
+    animation: deslocamentoDir 3s;
+}
+
+.sign-up-js .first-content .second-column {
+    z-index: 11;
+}
+
+.sign-up-js .first-content .first-column {
+    z-index: 13;
+}
+
+/* animacao da volta do content before */
+.sign-up-js .content::before {
+    animation: slideout 3s;
+    z-index: 12;
+}
+
+/* animacao das transicoes com key-frames */
+
+@keyframes slidein {
+    from{
+        left: 0;
+        width: 40%;
+    }
+    25%{
+        left: 15%;
+        width: 50%;
+    }
+
+    50%{
+        left: 30%;
+        width: 60%;
+    }
+
+    75%{
+        left: 45%;
+        width: 50%;
+    }
+    to {
+        left: 60%;
+        width: 40%;
+    }     
+}
+
+@keyframes slideout {
+    from{
+        left: 60;
+        width: 40%;
+    }
+    25%{
+        left: 45%;
+        width: 50%;
+    }
+
+    50%{
+        left: 30%;
+        width: 60%;
+    }
+
+    75%{
+        left: 15%;
+        width: 50%;
+    }
+    to {
+        left: 0%;
+        width: 40%;
+    }     
 }

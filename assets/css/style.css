@@ -26,7 +26,7 @@ body {
 .content {
     /* pai dos contents */
     width: 960px;
-    height: 60%;   
+    height: 70%;   
     background-color: white;
     border-radius: 15px;
     /* eixo x */
@@ -47,7 +47,7 @@ body {
     height: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    /* left: 0%; */
+    left: 0%;
 }
 
 
@@ -78,6 +78,10 @@ body {
 
 .title-primary {
     color: white;
+}
+
+.title-second {
+    color: #58af9b;
 }
 
 .description {
@@ -157,7 +161,7 @@ body {
 }
 
 .link-social-media .item-social-media {
-    transition: background-color 3s;
+    transition: background-color .5s;
 }
 
 /* pseudo classe que nega a propriedade para o primeiro filho da classe item-social-media */
@@ -183,6 +187,7 @@ body {
     height: 45px;
     width: 100%;
     border: none;
+    padding-left: 10px;
     background-color: #ecf0f1;
 }
 
@@ -196,7 +201,7 @@ input:-webkit-autofill{
     background-color: #ecf0f1;
     display: flex;
     align-items: center;
-    margin: 8px;
+    margin: 5px;
 }
 
 .icon-modify{
@@ -212,10 +217,6 @@ input:-webkit-autofill{
     flex-direction: column;
     /* alinhamento no eixo y */
     align-items: center;
-}
-
-.title-second {
-    color: #58af9b;
 }
 
 /* div do segundo menu */
@@ -259,7 +260,8 @@ input:-webkit-autofill{
 .sign-in-js .first-content .second-column {
     z-index: -1;
     position: relative;
-    animation: deslocamentoEsq 3s;
+    /* propriedade animacao com a animacao criada */
+    animation: deslocamentoEsq 1.3s;
 }
 
 /* animacao conteudo atras do before */
@@ -340,7 +342,7 @@ input:-webkit-autofill{
 .sign-up-js .second-content .second-column {
     position: relative;
     z-index: -1;
-    animation: deslocamentoDir 3s;
+    animation: deslocamentoDir 1.3s;
 }
 
 .sign-up-js .first-content .second-column {
@@ -358,7 +360,6 @@ input:-webkit-autofill{
 }
 
 /* animacao das transicoes com key-frames */
-
 @keyframes slidein {
     from{
         left: 0;
@@ -386,7 +387,7 @@ input:-webkit-autofill{
 
 @keyframes slideout {
     from{
-        left: 60;
+        left: 60%;
         width: 40%;
     }
     25%{

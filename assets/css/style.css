@@ -40,6 +40,7 @@ body {
 /* definicao de um pseudo elemento para contente anterior */
 .content::before {
     content: "";
+    /* vc poem onde quiser por ser absolute */
     position: absolute;
     background-color: #58af9b;
     /* posicao para o conteudo 100% altura e 40% da largura em relacao ao .content */
@@ -408,4 +409,157 @@ input:-webkit-autofill{
         left: 0%;
         width: 40%;
     }     
+}
+
+/* VERSAO MOBILE */
+/* media queries */
+
+/* controla o tamanho da tela */
+/* tipo de midia, screen e com até 1040px */
+@media screen and (max-width: 1040px){
+    /* conteudo do menu */
+    .content{
+        width: 100%;
+        height: 100%;
+    }
+    /* faixa verde */
+    .content::before{
+        width: 100%;
+        height: 35%;
+        top: 0;
+        border-radius: 0;
+    }
+    .first-content, .second-content {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .first-column, .second-column {
+        width: 100%;
+    }
+
+    .sign-in-js .content::before {
+        top: 65%;
+        left: 0%;
+        border-radius: 0%;
+    }
+
+    .form {
+        width: 90%;
+    }
+    
+    /* animacao mobile css */
+
+    /* animacao das transicoes com key-frames */
+    /* animacao conteudo atras do before */
+    /* a animacao vai se de cima para baixo, mas como o css ja chama essas animacoes vamos manter os nomes */
+    @keyframes slidein {
+        from{
+            top: 0;
+            height: 35%;
+        }
+        25%{
+            top: 15%;
+            height: 50%;
+        }
+
+        50%{
+            top: 30%;
+            height: 60%;
+        }
+
+        75%{
+            top: 45%;
+            height: 50%;
+        }
+        to {
+            top: 65%;
+            height: 35%;
+        }     
+    }
+
+    @keyframes slideout {
+        from{
+            top: 65%;
+            height: 35%;
+        }
+        25%{
+            top: 45%;
+            height: 50%;
+        }
+
+        50%{
+            top: 30%;
+            height: 60%;
+        }
+
+        75%{
+            top: 15%;
+            height: 50%;
+        }
+        to {
+            top: 0%;
+            height: 35%;
+        }     
+    }
+    
+    @keyframes deslocamentoEsq {
+        from{
+            top: 0;
+            opacity: 1;
+            z-index: 12;
+        }
+        25%{
+            top: -80px;
+            opacity: .66;
+            z-index: 12;
+        }
+        50%{
+            top: -100px;
+            opacity: .33;
+            z-index: 12;
+        }
+        to {
+            top: -110;
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+
+    @keyframes deslocamentoDir {
+        from{
+            top: 0;
+            opacity: 1;
+            z-index: 12;
+        }
+        25%{
+            top: 80px;
+            opacity: .33;
+            /* z-index: 12; */
+        }
+        50%{
+            top: 100px;
+            opacity: .66;
+            /* z-index: 12;
+            background-color: yellow; */
+        }
+        to {
+            top: 110;
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+}
+
+/* quando encolhe a proxima resolucao herda a anterior */
+@media screen and (max-width: 740px){
+    .form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .form {
+        width: 100%;
+    }
 }
